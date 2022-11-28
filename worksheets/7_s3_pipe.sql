@@ -1,4 +1,4 @@
-create or replace TABLE ECOMMERCEDATA.ECOMMERCE.S3TABLE (
+create or replace TABLE TESTDB.ECOMMERCE.S3TABLE (
 	INVOICENO VARCHAR(38),
 	STOCKCODE VARCHAR(38),
 	DESCRIPTION VARCHAR(60),
@@ -11,8 +11,8 @@ create or replace TABLE ECOMMERCEDATA.ECOMMERCE.S3TABLE (
 
 show TABLES;
 
-create or replace pipe ECOMMERCEDATA.ECOMMERCE.S3_pipe auto_ingest=true 
-as copy into ECOMMERCEDATA.ECOMMERCE.S3table   
+create or replace pipe TESTDB.ECOMMERCE.S3_pipe auto_ingest=true
+as copy into TESTDB.ECOMMERCE.S3table   
 from @s3stage;
 
 show pipes

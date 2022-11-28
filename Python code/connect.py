@@ -30,7 +30,7 @@ ctx = connector.connect(
     # snowflake_id is like hi88777
     account=f'{snowflake_id}.snowflakecomputing.com',
     warehouse='SMALLWAREHOUSE',
-    database='ECOMMERCEDATA',
+    database='TESTDB',
     schema ='ECOMMERCE',
     autocommit=True
     )

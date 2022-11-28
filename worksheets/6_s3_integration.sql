@@ -11,11 +11,11 @@ DESC INTEGRATION s3_storage_integration;
 
 create or replace stage s3stage
   url = 's3://my-snowflake-store/staging/'
-  file_format = ECOMMERCECSVFORMAT 
+  file_format = ECOMMERCECSVFORMAT
   storage_integration = s3_storage_integration;
-  
-  
-create or replace TABLE ECOMMERCEDATA.ECOMMERCE.S3TABLE (
+
+
+create or replace TABLE TESTDB.ECOMMERCE.S3TABLE (
 	INVOICENO VARCHAR(38),
 	STOCKCODE VARCHAR(38),
 	DESCRIPTION VARCHAR(60),
@@ -29,6 +29,6 @@ create or replace TABLE ECOMMERCEDATA.ECOMMERCE.S3TABLE (
 
 copy into s3table
   from @s3stage;
-  
-  
+
+
 show tables;
