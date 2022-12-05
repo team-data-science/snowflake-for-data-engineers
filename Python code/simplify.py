@@ -30,7 +30,12 @@ if __name__ == "__main__":
     stream = ZipFile(in_fp).open('data.csv', 'r')
     df = pd.read_csv(stream, encoding_errors='replace', dtype=dtypes)
     drop_rows = df.apply(func=row_to_skip, axis=1)
+ 
+    print(drop_rows.head())
+
+    # tilda because we don't want to select any of these rows
     df = df.loc[~drop_rows, :]
+    
     """
     if you want to upload df using the GUI console,
     consider calling something df.head(2000) or dropping at least around 50% of the rows
