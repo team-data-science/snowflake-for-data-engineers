@@ -1,6 +1,6 @@
-list @my_upload
+list @my_upload;
 
-remove @my_upload
+remove @my_upload;
 
 create or replace TABLE TESTDB.ECOMMERCE.DATA (
 	INVOICENO VARCHAR(38),
@@ -23,10 +23,10 @@ create or replace task TESTDB.ECOMMERCE.MY_import_from_stage
 create or replace task TESTDB.ECOMMERCE.MY_clean_stage
 	warehouse=SMALLWAREHOUSE
 	after TESTDB.ECOMMERCE.MY_import_from_stage
-	as remove @my_upload 
+	as remove @my_upload
               ;
-              
-              
+
+
 -- RESUME to let it run / SUSPEND (default) to stop it
 ALTER TASK TESTDB.ECOMMERCE.MY_clean_stage RESUME;
 ALTER TASK TESTDB.ECOMMERCE.MY_import_from_stage RESUME;
