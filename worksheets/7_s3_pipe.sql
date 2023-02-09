@@ -15,6 +15,6 @@ create or replace pipe TESTDB.ECOMMERCE.S3_pipe auto_ingest=true
 as copy into TESTDB.ECOMMERCE.S3table   
 from @s3stage;
 
-show pipes
+show pipes;
 
-select system$pipe_status('ecommercedata.ecommerce.s3_pipe');
+select system$pipe_status('TESTDB.ecommerce.s3_pipe');

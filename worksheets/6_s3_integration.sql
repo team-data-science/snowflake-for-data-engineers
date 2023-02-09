@@ -1,3 +1,46 @@
+
+-- AWS IAM policy template:
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+              "s3:GetObject",
+              "s3:GetObjectVersion"
+            ],
+            "Resource": "arn:aws:s3:::my-storage/staging/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:*"
+            ],
+            "Resource": "arn:aws:s3:::my-storage"
+        }
+    ]
+}
+
+-- AWS IAM role template:
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "<STORAGE_AWS_IAM_USE_ARN>"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": {
+        "StringEquals": {
+          "sts:ExternalId": "<STORAGE_AWS_EXTERNAL_ID>"
+        }
+      }
+    }
+  ]
+}
+
+
 CREATE STORAGE INTEGRATION s3_storage_integration
   TYPE = EXTERNAL_STAGE
   STORAGE_PROVIDER = 'S3'
@@ -26,9 +69,11 @@ create or replace TABLE TESTDB.ECOMMERCE.S3TABLE (
 	COUNTRY VARCHAR(20)
 );
 
+list @s3stage;
 
 copy into s3table
   from @s3stage;
 
+remove @s3stage;
 
 show tables;
